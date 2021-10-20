@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "apollo-server-lambda": "2.25.2",
-    "aws-sdk": "2.1010.0",
+    "aws-sdk": "2.1011.0",
     "graphql": "15.6.1",
     "graphql-relay": "0.6.0"
   },
