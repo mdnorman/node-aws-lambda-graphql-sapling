@@ -29,7 +29,7 @@
     "save-schema": "ts-node scripts/printSchema > schema.graphql"
   },
   "dependencies": {
-    "apollo-server-lambda": "2.25.2",
+    "apollo-server-lambda": "3.5.0",
     "aws-sdk": "2.1036.0",
     "aws-xray-sdk-core": "3.3.4",
     "debug": "4.3.2",
