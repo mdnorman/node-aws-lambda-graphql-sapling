@@ -13,12 +13,7 @@ import {
   GraphQLResponse,
   GraphQLServiceContext,
 } from 'apollo-server-plugin-base';
-import {
-  APIGatewayProxyCallback,
-  APIGatewayProxyEvent,
-  APIGatewayProxyHandler,
-  APIGatewayProxyResult,
-} from 'aws-lambda';
+import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda';
 import { Context as LambdaContext } from 'aws-lambda/handler';
 import { GraphQLError } from 'graphql';
 
@@ -26,6 +21,7 @@ import { schema } from '../api';
 import { isProduction } from '../config/common';
 import { toJson } from '../utils/logger';
 import { createEventDebugLogger } from './logger';
+import { ArgumentError } from '../utils/errors';
 
 const debug = createEventDebugLogger('apollo');
 const trace = createEventDebugLogger('apollo:trace');
@@ -115,34 +111,18 @@ const buildApolloHandlerOptions = (): CreateHandlerOptions => ({});
 const apolloLambdaHandler: APIGatewayProxyHandler = server.createHandler(buildApolloHandlerOptions());
 
 // noinspection JSUnusedGlobalSymbols
-export const handler = async (event: APIGatewayProxyEvent, context: LambdaContext): Promise<APIGatewayProxyResult> =>
-  new Promise<APIGatewayProxyResult>(
-    (
-      resolve: (value: APIGatewayProxyResult | PromiseLike<APIGatewayProxyResult>) => void,
-      reject: (error: Error | string) => void,
-    ) => {
-      const cb: APIGatewayProxyCallback = (error?: Error | string | null, result?: APIGatewayProxyResult) => {
-        if (error) {
-          console.error('Error while executing Apollo lambda', error);
-          reject(error);
-          return;
-        }
+export const handler = async (event: APIGatewayProxyEvent, context: LambdaContext): Promise<APIGatewayProxyResult> => {
+  try {
+    const result = await apolloLambdaHandler(event, context, () => {});
+    if (!result) {
+      console.error('No result and no error executing Apollo lambda');
+      throw new ArgumentError('No result');
+    }
 
-        if (!result) {
-          console.error('No result and no error executing Apollo lambda');
-          reject('No result');
-          return;
-        }
-
-        debug`Apollo lambda result: ${toJson(result)}`;
-        resolve(result);
-      };
-
-      try {
-        apolloLambdaHandler(event, context, cb);
-      } catch (e) {
-        console.error('Caught error while executing Apollo lambda', e);
-        reject(e);
-      }
-    },
-  );
+    debug`Apollo lambda result: ${toJson(result)}`;
+    return result;
+  } catch (error) {
+    console.error('Error while executing Apollo lambda', error);
+    throw error;
+  }
+};
