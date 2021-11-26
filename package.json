@@ -14,7 +14,7 @@
     "url": "https://github.com/mdnorman/CHANGEME/issues"
   },
   "scripts": {
-    "clean": "rm -rf dist && rm -rf out",
+    "clean": "rm -rf dist && rm -rf tmp/generated && rm -rf out",
     "build": "npm run graphql-codegen && tsc",
     "build:watch": "tsc --watch",
     "rebuild": "npm run clean && npm run build",
@@ -22,7 +22,7 @@
     "posttest": "npm run lint",
     "lint": "eslint",
     "pretty": "pretty-quick",
-    "offline": "serverless offline",
+    "offline": "serverless offline --useChildProcesses --apiKey local-dev-api-key",
     "deploy": "serverless deploy --verbose --stage test",
     "deploy:prod": "serverless deploy --verbose --stage prod",
     "print-schema": "get-graphql-schema -h x-api-key=local-dev-api-key ${GRAPHQL_URL:-http://localhost:${GRAPHQL_PORT:-3000}/dev/graphql}",
