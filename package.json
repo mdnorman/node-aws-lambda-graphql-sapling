@@ -15,7 +15,7 @@
   },
   "scripts": {
     "clean": "rm -rf dist && rm -rf out",
-    "build": "tsc",
+    "build": "npm run graphql-codegen && tsc",
     "build:watch": "tsc --watch",
     "rebuild": "npm run clean && npm run build",
     "test": "jest",
@@ -25,17 +25,28 @@
     "offline": "serverless offline",
     "deploy": "serverless deploy --verbose --stage test",
     "deploy:prod": "serverless deploy --verbose --stage prod",
-    "print-schema": "ts-node scripts/printSchema",
-    "save-schema": "ts-node scripts/printSchema > schema.graphql"
+    "print-schema": "get-graphql-schema -h x-api-key=local-dev-api-key ${GRAPHQL_URL:-http://localhost:${GRAPHQL_PORT:-3000}/dev/graphql}",
+    "save-schema": "get-graphql-schema -h x-api-key=local-dev-api-key ${GRAPHQL_URL:-http://localhost:${GRAPHQL_PORT:-3000}/dev/graphql} > ./schema.graphql",
+    "graphql-codegen": "graphql-codegen --config codegen.yml",
+    "graphql-codegen:watch": "npm run graphql-codegen -- --watch",
+    "save-schema-and-codegen": "npm run save-schema && npm run graphql-codegen"
   },
   "dependencies": {
-    "apollo-server-lambda": "2.25.2",
+    "apollo-server-lambda": "3.5.0",
+    "apollo-server-plugin-base": "3.4.0",
     "aws-sdk": "2.1036.0",
     "aws-xray-sdk-core": "3.3.4",
     "debug": "4.3.2",
-    "graphql": "15.6.1"
+    "graphql": "15.6.1",
+    "graphql-tag": "2.12.6",
+    "moment": "2.29.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.3.0",
+    "@graphql-codegen/named-operations-object": "2.2.0",
+    "@graphql-codegen/typescript": "2.4.1",
+    "@graphql-codegen/typescript-operations": "2.2.1",
+    "@graphql-codegen/typescript-resolvers": "2.4.2",
     "@types/aws-lambda": "8.10.85",
     "@types/jest": "27.0.3",
     "@types/node": "16.11.10",
@@ -44,6 +55,7 @@
     "eslint": "8.3.0",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-prettier": "4.0.0",
+    "get-graphql-schema": "2.1.2",
     "jest": "27.3.1",
     "prettier": "2.5.0",
     "pretty-quick": "3.1.2",

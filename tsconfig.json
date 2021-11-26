@@ -13,6 +13,7 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
     "outDir": "dist"
   },
   "include": ["./src/**/*.ts"],
