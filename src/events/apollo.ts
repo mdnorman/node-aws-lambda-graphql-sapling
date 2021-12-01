@@ -22,6 +22,7 @@ import { isProduction } from '../config/common';
 import { toJson } from '../utils/logger';
 import { createEventDebugLogger } from './logger';
 import { ArgumentError } from '../utils/errors';
+import { xrayCaptureAllHttpTraffic } from '../utils/xray';
 
 const debug = createEventDebugLogger('apollo');
 const trace = createEventDebugLogger('apollo:trace');
@@ -112,6 +113,8 @@ const apolloLambdaHandler: APIGatewayProxyHandler = server.createHandler(buildAp
 
 // noinspection JSUnusedGlobalSymbols
 export const handler = async (event: APIGatewayProxyEvent, context: LambdaContext): Promise<APIGatewayProxyResult> => {
+  xrayCaptureAllHttpTraffic();
+
   try {
     const result = await apolloLambdaHandler(event, context, () => {});
     if (!result) {
