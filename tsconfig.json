@@ -18,7 +18,6 @@
     "strictNullChecks": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
     "outDir": "dist"
   },
   "include": ["./src/**/*.ts"],
