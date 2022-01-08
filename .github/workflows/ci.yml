@@ -16,8 +16,10 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
       - run: ls -l /__w/node-aws-lambda-graphql-sapling
+      - run: which npm
+      - run: ls -l /usr/local/bin
       - run: whoami
-      - run: npm run whoami
+      - run: sh -e npm run whoami
       - name: Install dependencies
         run: npm ci
       - name: Build
