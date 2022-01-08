@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: node:16.13.1-alpine
-      options: --user root
 
     steps:
       - name: Check out code
@@ -19,7 +18,7 @@ jobs:
       - run: which npm
       - run: ls -l /usr/local/bin
       - run: whoami
-      - run: sh -e npm run whoami
+      - run: sh -e /usr/local/bin/npm run whoami
       - name: Install dependencies
         run: npm ci
       - name: Build
