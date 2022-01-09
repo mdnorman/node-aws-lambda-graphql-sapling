@@ -10,16 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: node:16.13.1-alpine
-      options: --user 1001
+      options: --user 1001 # this is the user that CI uses, which is needed to generate files within the repo directory
 
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-      - run: ls -l /__w/node-aws-lambda-graphql-sapling
-      - run: which npm
-      - run: ls -l /usr/local/bin
-      - run: whoami
-      - run: /usr/local/bin/npm run whoami
       - name: Install dependencies
         run: npm ci
       - name: Build
