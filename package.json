@@ -29,7 +29,6 @@
     "save-schema": "get-graphql-schema -h x-api-key=local-dev-api-key ${GRAPHQL_URL:-http://localhost:${GRAPHQL_PORT:-3000}/dev/graphql} > ./schema.graphql",
     "graphql-codegen": "graphql-codegen --config codegen.yml",
     "graphql-codegen:watch": "npm run graphql-codegen -- --watch",
-    "whoami": "whoami",
     "save-schema-and-codegen": "npm run save-schema && npm run graphql-codegen"
   },
   "dependencies": {
