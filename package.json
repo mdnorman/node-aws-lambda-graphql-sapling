@@ -71,7 +71,7 @@
     "serverless": "3.21.0",
     "serverless-domain-manager": "6.0.4",
     "serverless-jetpack": "0.11.1",
-    "serverless-offline": "9.1.6",
+    "serverless-offline": "9.2.0",
     "serverless-v2-aws-documentation": "2.0.4",
     "standard-version": "9.5.0",
     "ts-jest": "28.0.7",
