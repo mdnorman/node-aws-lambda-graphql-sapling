@@ -54,7 +54,7 @@
     "@graphql-codegen/typescript": "2.7.2",
     "@graphql-codegen/typescript-operations": "2.5.2",
     "@graphql-codegen/typescript-resolvers": "2.7.2",
-    "@types/aws-lambda": "8.10.101",
+    "@types/aws-lambda": "8.10.102",
     "@types/jest": "28.1.6",
     "@types/node": "16.11.48",
     "@typescript-eslint/eslint-plugin": "5.33.0",
