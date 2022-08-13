@@ -53,7 +53,7 @@
     "@graphql-codegen/named-operations-object": "2.3.0",
     "@graphql-codegen/typescript": "2.7.2",
     "@graphql-codegen/typescript-operations": "2.5.2",
-    "@graphql-codegen/typescript-resolvers": "2.7.2",
+    "@graphql-codegen/typescript-resolvers": "2.7.3",
     "@types/aws-lambda": "8.10.101",
     "@types/jest": "28.1.6",
     "@types/node": "16.11.48",
