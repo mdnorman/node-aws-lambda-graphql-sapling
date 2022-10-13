@@ -41,7 +41,7 @@
   "dependencies": {
     "apollo-server-lambda": "3.10.3",
     "apollo-server-plugin-base": "3.6.3",
-    "aws-sdk": "2.1231.0",
+    "aws-sdk": "2.1232.0",
     "aws-xray-sdk-core": "3.3.8",
     "debug": "4.3.4",
     "graphql": "15.8.0",
@@ -49,7 +49,7 @@
     "moment": "2.29.4"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "2.13.6",
+    "@graphql-codegen/cli": "2.13.7",
     "@graphql-codegen/named-operations-object": "2.3.1",
     "@graphql-codegen/typescript": "2.7.4",
     "@graphql-codegen/typescript-operations": "2.5.4",
