@@ -67,11 +67,11 @@ export const PageInfoType = new GraphQLObjectType<PageInfo, GraphRequestContext>
       description: 'The cursor to use to get the next page, if any',
     },
     hasNextPage: {
-      type: GraphQLNonNull(GraphQLBoolean),
+      type: new GraphQLNonNull(GraphQLBoolean),
       description: 'Whether or not there are any more pages after this one',
     },
     hasPreviousPage: {
-      type: GraphQLNonNull(GraphQLBoolean),
+      type: new GraphQLNonNull(GraphQLBoolean),
       description: 'Whether or not there are any more pages before this one',
     },
   },
@@ -83,11 +83,11 @@ export const buildEdgeType = <T>(nodeType: GraphQLObjectType<T, GraphRequestCont
     description: 'A single edge of a connection, containing the item and its cursor',
     fields: {
       node: {
-        type: GraphQLNonNull(nodeType),
+        type: new GraphQLNonNull(nodeType),
         description: 'The item in the list',
       },
       cursor: {
-        type: GraphQLNonNull(GraphQLString),
+        type: new GraphQLNonNull(GraphQLString),
         description: 'The cursor at this item, for use in pagination',
       },
     },
@@ -113,7 +113,7 @@ export const buildConnectionType = <T>({
   const totalFields = includeTotal
     ? {
         total: {
-          type: GraphQLNonNull(GraphQLInt),
+          type: new GraphQLNonNull(GraphQLInt),
           description: 'The total number of items',
           resolve: (conn: Connection<T>) => conn.getTotal(),
         },
@@ -126,13 +126,13 @@ export const buildConnectionType = <T>({
     description: 'Contains a list of items of a particular type',
     fields: {
       pageInfo: {
-        type: GraphQLNonNull(PageInfoType),
+        type: new GraphQLNonNull(PageInfoType),
         description: 'The page information',
         resolve: (conn) => conn.getPageInfo(),
       },
 
       edges: {
-        type: GraphQLNonNull(GraphQLList(GraphQLNonNull(edgeType || buildEdgeType<T>(nodeType!)))),
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(edgeType || buildEdgeType<T>(nodeType!)))),
         description: 'The list of edges',
         resolve: (conn) => conn.getEdges(),
       },
