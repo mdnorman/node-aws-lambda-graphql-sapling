@@ -39,7 +39,7 @@
     }
   },
   "dependencies": {
-    "apollo-server-lambda": "3.10.4",
+    "apollo-server-lambda": "3.11.0",
     "apollo-server-plugin-base": "3.6.3",
     "aws-sdk": "2.1245.0",
     "aws-xray-sdk-core": "3.3.8",
