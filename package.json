@@ -41,7 +41,7 @@
   "dependencies": {
     "apollo-server-lambda": "3.11.1",
     "apollo-server-plugin-base": "3.7.1",
-    "aws-sdk": "2.1313.0",
+    "aws-sdk": "2.1314.0",
     "aws-xray-sdk-core": "3.4.1",
     "debug": "4.3.4",
     "graphql": "16.6.0",
