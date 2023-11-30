@@ -8,7 +8,7 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs20.x
   profile: serverless
   stage: dev
   region: us-east-1
@@ -71,13 +71,13 @@ package:
 
   exclude:
     - .circleci/**
+    - .github/**
     - .idea/**
     - .env*
     - examples/**
     - scripts/**
     - spec/**
     - tmp/**
-    - '**/node_modules/aws-sdk/**'
 
 functions:
   graphql:
