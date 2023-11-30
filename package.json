@@ -22,7 +22,7 @@
     "posttest": "npm run lint",
     "lint": "eslint",
     "pretty": "pretty-quick",
-    "offline": "serverless offline --useChildProcesses --apiKey local-dev-api-key",
+    "offline": "serverless offline",
     "deploy": "serverless deploy --verbose --stage test",
     "deploy:prod": "serverless deploy --verbose --stage prod",
     "release": "standard-version",

@@ -22,6 +22,9 @@ provider:
     apiGateway: true
     lambda: true
 
+  apiGateway:
+    apiKeys: ${self:custom.apiKeys}
+
   environment:
     DEBUG: ${self:custom.environment.debugLog}
     NODE_ENV: ${self:custom.environment.nodeEnvironment}
@@ -47,6 +50,14 @@ custom:
     httpPort: '3000'
     websocketPort: '3001'
     lambdaPort: '3002'
+
+  apiKeys: ${self:custom.apiKeysStage.${self:custom.stage}}
+  apiKeysStage:
+    dev:
+      - name: api-key
+        value: local-dev-api-key
+    test: []
+    prod: []
 
   environment:
     debugLog: ${self:custom.environment.debugLogStage.${self:custom.stage}}
